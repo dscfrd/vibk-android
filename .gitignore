@@ -1,0 +1,14 @@
+node_modules/
+.gradle/
+build/
+android/app/build/
+android/.gradle/
+android/app/debug.keystore
+*.apk
+*.aab
+*.hprof
+.DS_Store
+*.log
+.env
+.env.*
+.metro-health-check*
