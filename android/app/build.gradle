@@ -29,14 +29,6 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            if (project.hasProperty('VIBK_UPLOAD_STORE_FILE')) {
-                storeFile file(VIBK_UPLOAD_STORE_FILE)
-                storePassword VIBK_UPLOAD_STORE_PASSWORD
-                keyAlias VIBK_UPLOAD_KEY_ALIAS
-                keyPassword VIBK_UPLOAD_KEY_PASSWORD
-            }
-        }
     }
 
     buildTypes {
@@ -46,7 +38,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.debug // Use debug for CI, override for prod
+            signingConfig signingConfigs.debug
         }
     }
 }
@@ -55,5 +47,3 @@ dependencies {
     implementation("com.facebook.react:react-android")
     implementation("com.facebook.react:hermes-android")
 }
-
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
