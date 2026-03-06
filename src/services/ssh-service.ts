@@ -1,4 +1,4 @@
-import SSHClient from 'react-native-ssh-sftp'
+import SSHClient from '@dylankenneally/react-native-ssh-sftp'
 import type { SshServer } from '../shared/server-types'
 
 export type ConnectionState = 'disconnected' | 'connecting' | 'connected'
