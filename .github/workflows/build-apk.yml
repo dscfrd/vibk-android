@@ -34,12 +34,13 @@ jobs:
           sdkmanager "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125"
 
       - name: Generate Gradle Wrapper
-        working-directory: android
         run: |
-          gradle wrapper --gradle-version 8.6
-
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
+          mkdir -p /tmp/gradle-init && cd /tmp/gradle-init
+          gradle init --type basic --dsl groovy --no-daemon
+          gradle wrapper --gradle-version 8.6 --no-daemon
+          cp -f gradle/wrapper/gradle-wrapper.jar $GITHUB_WORKSPACE/android/gradle/wrapper/
+          cp -f gradlew $GITHUB_WORKSPACE/android/gradlew
+          chmod +x $GITHUB_WORKSPACE/android/gradlew
 
       - name: Build Release APK
         working-directory: android
